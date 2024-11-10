@@ -17,21 +17,22 @@ const glados = async () => {
       headers,
     }).then((r) => r.json())
     return [
-      'Checkin OK',
+      // 'Checkin OK',
       `${checkin.message}`,
       `Points ${Number(checkin.list[0].balance)}`,
       `Left Days ${Number(status.data.leftDays)}`,
     ]
   } catch (error) {
     return [
-      'Checkin Error',
+      // 'Checkin Error',
       `${error}`,
       `<${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}>`,
     ]
   }
 }
 
-const notify = async (contents) => {
+// 推送加
+const notify_push_plus = async (contents) => {
   const token = process.env.NOTIFY
   if (!token || !contents) return
   await fetch(`https://www.pushplus.plus/send`, {
@@ -46,8 +47,24 @@ const notify = async (contents) => {
   })
 }
 
+// WxPusher
+const notify_wx_pusher = async (contents) => {
+  const spt = process.env.SPT
+  if (!spt || !contents) return
+  await fetch(`https://wxpusher.zjiecode.com/api/send/message/simple-push`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      spt,
+      summary: contents[0],
+      content: contents.join('<br>'),
+      contentType: 3,
+    }),
+  })
+}
+
 const main = async () => {
-  await notify(await glados())
+  await notify_wx_pusher(await glados())
 }
 
 main()
