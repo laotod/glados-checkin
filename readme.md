@@ -16,7 +16,7 @@ GitHub Actions 实现 [GLaDOS][glados] 自动签到
 
 1. 如需推送通知, 可用 [WxPusher][wxpusher], 扫描下面的二维码，添加 SPT 到 Secret `NOTIFY`
 
-[https://wxpusher.zjiecode.com/api/qrcode/RwjGLMOPTYp35zSYQr0HxbCPrV9eU0wKVBXU1D5VVtya0cQXEJWPjqBdW3gKLifS.jpg]
+![获取SPT](https://wxpusher.zjiecode.com/api/qrcode/RwjGLMOPTYp35zSYQr0HxbCPrV9eU0wKVBXU1D5VVtya0cQXEJWPjqBdW3gKLifS.jpg)
 
 [glados]: https://github.com/glados-network/GLaDOS
 <!-- [pushplus]: https://www.pushplus.plus/ -->
