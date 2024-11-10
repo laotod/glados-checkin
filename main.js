@@ -51,12 +51,19 @@ const notify_push_plus = async (contents) => {
 const notify_wx_pusher = async (contents) => {
   const spt = process.env.NOTIFY
   if (!spt || !contents) return
+  let title = contents[0]
+  if (title) {
+    title = title.replace("Checkin! Got ", "签到成功！+")
+    title = title.replace(" Points", "积分")
+
+    title = title.replace("Checkin Repeats! Please Try Tomorrow", "今天已签，明天再来！")
+  }
   await fetch(`https://wxpusher.zjiecode.com/api/send/message/simple-push`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       spt,
-      summary: contents[0],
+      summary: title,
       content: contents.join('<br>'),
       contentType: 3,
     }),
